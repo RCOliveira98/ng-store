@@ -37,9 +37,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
         success => {
           this.servProduct.createToast('Produto atualizado com sucesso!');
           this.reditectUrl();
-        },
-        erro => this.servProduct.createToast(`Falha ao atualizar o produto! ${erro}`)
-      );
+        });
     } catch (error) {
       this.servProduct.createToast();
     }

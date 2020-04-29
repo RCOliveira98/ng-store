@@ -36,9 +36,7 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
       (success: Product) => {
         this.servProduct.createToast('Produto criado com sucesso!');
         this.navigate();
-      },
-      (erro: any) => this.servProduct.createToast('Falha ao criar produto!')
-    );
+      });
   }
 
   close() {

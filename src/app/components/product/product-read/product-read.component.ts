@@ -36,11 +36,22 @@ export class ProductReadComponent implements OnInit, OnDestroy {
     this.servRouter.navigate([`/products/update/${id}`]);
   }
 
-  private fillList(): void {
-    this.subscription = this.servProduct.readProducts().subscribe(
-      (products: Product[]) => this.productsList = products,
-      (e: any) => this.servProduct.createToast(`Falha ao carregar os produtos cadastrados. ${e}`)
+  delete(id: number): void {
+    this.servProduct.unsubscribe(this.subscription);
+
+    this.subscription = this.servProduct.deleteProduct(id).subscribe(
+      success => {
+        this.fillList();
+        this.servProduct.createToast('Produto excluído com sucesso!');
+      }
     );
+  }
+
+  private fillList(): void {
+    this.servProduct.unsubscribe(this.subscription);
+
+    this.subscription = this.servProduct.readProducts().subscribe(
+      (products: Product[]) => this.productsList = products);
   }
 
 }
