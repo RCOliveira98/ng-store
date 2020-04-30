@@ -1,4 +1,7 @@
+import { Header } from './../../components/template/header/header.model';
 import { Component, OnInit } from '@angular/core';
+
+import { HeaderService } from './../../components/template/header/header.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private header: HeaderService) {
+    this.header.elHeader = {title: 'Início', icon: 'home', url: '/'};
+   }
 
   ngOnInit() {
   }
